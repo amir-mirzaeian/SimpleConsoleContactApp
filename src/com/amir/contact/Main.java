@@ -1,5 +1,6 @@
 package com.amir.contact;
 
+
 import com.amir.contact.datamodel.ContactData;
 
 import java.io.IOException;
@@ -26,7 +27,7 @@ public class Main {
         "2.To Add a contact\n" +
         "3.To Remove a contact\n" +
         "4.To Edit a contact\n" +
-        "5.To Search By Name\n" +
+        "5.To Search A Contact By Either Name,Last Name or Phone\n" +
                 "6.To Sort Contacts By Name\n" +
                 "7,To Sort Contacts By LastName\n" +
                 "8.To Exit\n" +
@@ -49,7 +50,7 @@ public class Main {
                     ifContinue();
                     break;
                 case 3:
-                    System.out.println("Contact Name:");
+                    System.out.println("Contact Name, lastName, or phone number:");
                     scanner.nextLine();
                     String name = scanner.nextLine();
                     contactData.removeContact(name);
@@ -63,16 +64,22 @@ public class Main {
                     ifContinue();
                     break;
                 case 5:
-                    System.out.println("Name you want to search:");
+                    System.out.println("Name, Last name or phone of the Contact you want to search:");
                     scanner.nextLine();
                     String searchName = scanner.nextLine();
-                    contactData.searchByName(searchName, true);
+                    if (contactData.searchContact(searchName) == null)
+                        System.out.println("Not such a contact...");
+                    else
+                    System.out.println(contactData.searchContact(searchName).toString());
+                    ifContinue();
                     break;
                 case 6:
                     contactData.sortByName();
+                    ifContinue();
                     break;
                 case 7:
                     contactData.sortByLastName();
+                    ifContinue();
                     break;
                 case 8:
                     System.out.printf("Thank's for using the app... GOODBYE!");
